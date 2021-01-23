@@ -1,9 +1,10 @@
 package hey.jusang.msatest
 
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+
 interface CustomerService {
-    fun getCustomer(id: Int): Customer?
-    fun createCustomer(customer: Customer)
-    fun deleteCustomer(id: Int)
-    fun updateCustomer(id: Int, customer: Customer)
-    fun searchCustomers(nameFilter: String): List<Customer>
+    fun getCustomer(id: Int): Mono<Customer>
+    fun createCustomer(customerMono: Mono<Customer>): Mono<Customer>
+    fun searchCustomers(nameFilter: String): Flux<Customer>
 }

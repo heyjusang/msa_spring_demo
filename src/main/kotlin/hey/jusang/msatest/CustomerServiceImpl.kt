@@ -1,6 +1,10 @@
 package hey.jusang.msatest
 
 import org.springframework.stereotype.Component
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toFlux
+import reactor.kotlin.core.publisher.toMono
 import java.util.concurrent.ConcurrentHashMap
 
 @Component
@@ -15,21 +19,19 @@ class CustomerServiceImpl : CustomerService {
 
     private val customers = ConcurrentHashMap(initialCustomers.associateBy(Customer::id))
 
-    override fun getCustomer(id: Int): Customer? = customers[id]
+    override fun getCustomer(id: Int): Mono<Customer> = customers[id]?.toMono() ?: Mono.empty()
 
-    override fun createCustomer(customer: Customer) {
-        customers[customer.id] = customer
-    }
+    override fun createCustomer(customerMono: Mono<Customer>): Mono<Customer> =
+        customerMono.flatMap {
+            if (customers[it.id] == null) {
+                customers[it.id] = it
+                it.toMono()
+            }
+            else {
+                Mono.error(CustomerExistException("Customer ${it.id} already exist"))
+            }
+        }
 
-    override fun deleteCustomer(id: Int) {
-        customers.remove(id)
-    }
-
-    override fun updateCustomer(id: Int, customer: Customer) {
-        deleteCustomer(id)
-        createCustomer(customer)
-    }
-
-    override fun searchCustomers(nameFilter: String): List<Customer> =
-        customers.filter { it.value.name.contains(nameFilter, true) }.values.toList()
+    override fun searchCustomers(nameFilter: String): Flux<Customer> =
+        customers.filter { it.value.name.contains(nameFilter, true) }.values.toFlux()
 }
