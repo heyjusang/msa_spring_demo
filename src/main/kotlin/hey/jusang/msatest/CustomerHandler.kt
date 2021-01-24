@@ -22,6 +22,12 @@ class CustomerHandler(val customerService: CustomerService) {
                     .body(fromValue(ErrorResponse("error creating customer", it.message ?: "error")))
             }
 
+    fun delete(serverRequest: ServerRequest) =
+        customerService.deleteCustomer(serverRequest.pathVariable("id").toInt())
+            .flatMap {
+                if (it) ServerResponse.ok().build() else ServerResponse.notFound().build()
+            }
+
     // TODO: flatMap
     fun search(serverRequest: ServerRequest) =
         ServerResponse.ok().body(

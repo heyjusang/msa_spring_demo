@@ -3,6 +3,10 @@ spring:
     active: "development"
   jackson:
     default-property-inclusion: NON_NULL
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017"
+      database: "microservices"
 service:
   message:
     type: "simple"
