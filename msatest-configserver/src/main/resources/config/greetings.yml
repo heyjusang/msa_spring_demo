@@ -1,0 +1,3 @@
+microservice:
+  example:
+    greetings: "{cipher}1f7bf2b938b630a24268b813c0279142d6852b64ae279b1c98daf258d17b0df3"

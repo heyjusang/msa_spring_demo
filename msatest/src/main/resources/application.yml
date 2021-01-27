@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: "greetings"
+  profiles:
+    active: "development"
+  jackson:
+    default-property-inclusion: NON_NULL
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017"
+      database: "microservices"
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+server:
+  port: 0
+service:
+  message:
+    type: "simple"
+---
+spring:
+  config:
+    activate:
+      on-profile: "development"
+service:
+  message:
+    text: "hi"
+---
+spring:
+  config:
+    activate:
+      on-profile: "production"
+service:
+  message:
+    type: "advance"
+    text: "welcome"
