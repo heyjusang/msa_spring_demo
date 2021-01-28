@@ -26,6 +26,7 @@
 ## chapter6
 * Cloud
 * Config Server, Spring Boot Actuator, Discovery Server (Netflix-Eureka), Gateway (Netflix-Zuul)
+* **책에서는 spring-boot-starter-web 쓰는데, 기존 코드 고려해서 spring-boot-starter-webflux 사용함.**
 * **Gateway의 경우 현재 Spring boot 2.4.2에서 Zuul을 지원 안해서, Spring boot 2.3.8 사용**
 * **책 따라하면 Instance에서 Config Server 인식이 안됐다. spring-cloud-starter-bootstrap를 dependency로 추가하니 됐다.**
 * **Config Server에서 Encrypt 관련 기능 작업할 때, bootstrap.yml을 사용했는데, 책 따라하면 bootstrap.yml이 인식되지 않는다. 마찬가지로 spring-cloud-starter-bootstrap를 추가하면 된다.**
