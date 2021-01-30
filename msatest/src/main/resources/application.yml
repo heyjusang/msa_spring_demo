@@ -7,17 +7,20 @@ spring:
     default-property-inclusion: NON_NULL
   data:
     mongodb:
-      uri: "mongodb://localhost:27017"
+      uri: "mongodb://host.docker.internal:27017"
       database: "microservices"
 eureka:
   client:
     healthcheck:
       enabled: true
 server:
-  port: 0
+  port: 8081
 service:
   message:
     type: "simple"
+microservice:
+  example:
+    greetings: "default value"
 ---
 spring:
   config:
