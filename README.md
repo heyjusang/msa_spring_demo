@@ -32,7 +32,7 @@
 * **Config Server에서 Encrypt 관련 기능 작업할 때, bootstrap.yml을 사용했는데, 책 따라하면 bootstrap.yml이 인식되지 않는다. 마찬가지로 spring-cloud-starter-bootstrap를 추가하면 된다.**
 * 아마도 관련 문서: https://spring.io/blog/2020/10/07/spring-cloud-2020-0-0-m4-aka-ilford-is-available
 
-## chatper7
+## chapter7
 * Docker
 * 기존 코드 사용하기 위해 msatest, msatest-configserver, msatest-discoveryserver, msatest-gateway 그대로 유지하고, 각각 docker 설정
 * docker_script에 필요한 기능들 script로 만들어둠
@@ -53,3 +53,12 @@
     * https://docs.docker.com/docker-for-mac/apple-m1/#known-issues 에 The HTTP proxy is not enabled 라 써져있는데, 이것과 연관있나...
     * 일단은 configserver 연결안되면 msatest 자체가 안떠버려서, greeting 메시지 default value msatest쪽에 설정
   * io.fabric8:docker-maven-plugin이 등록 안됨. not found 뜨면서 plugin 등록 불가.. 그래서 이 부분은 제외. 뭐가 문제인지 모르겠다.  
+  
+## chapter8
+* Docker swarm
+* service create하는 docker script 생성 (docker_script/run_chapter8.sh)
+* local registry가 생성은 되는데 image push가 안됨. (chapter7과 동일한 이유일려나..)
+  * 일단은 dockerhub repository에 올려서 수행함. (heyjusang/msatest)
+* chapter6에서 cloud 환경을 위해 config-server, discovery-server, gateway를 만들었는데, chapter7, chapter8에서 이 모듈들을 다루지 않고, service instance 하나만으로 예제가 진행되다보니, 결국엔 chapter6의 내용이 무쓸모가 아닌가 싶다.
+  * chapter8에서 service instance의 replica를 3개로 늘려서 curl로 접속할 때, round-robin 방식으로 load balancing 되는걸 볼 수 있는데, 그러다보니 문득 gateway가 들어가면 이 replica들은 어떻게 연동되어야하지? 이런 생각도 들고.. 이것저것 궁금증이 많이 남는다.
+  * 유종의 미를 거두지 못하는 책 같다.
