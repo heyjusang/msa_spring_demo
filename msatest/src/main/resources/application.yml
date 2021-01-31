@@ -21,6 +21,7 @@ service:
 microservice:
   example:
     greetings: "default value"
+logging.level.org.springframework.web: DEBUG
 ---
 spring:
   config:

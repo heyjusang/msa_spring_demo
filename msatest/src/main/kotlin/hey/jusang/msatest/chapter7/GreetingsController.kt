@@ -1,4 +1,4 @@
-package hey.jusang.msatest
+package hey.jusang.msatest.chapter7
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
