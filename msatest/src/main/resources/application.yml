@@ -18,6 +18,7 @@ server:
 service:
   message:
     type: "simple"
+    text: "hi"
 microservice:
   example:
     greetings: "default value"
@@ -27,9 +28,6 @@ spring:
   config:
     activate:
       on-profile: "development"
-service:
-  message:
-    text: "hi"
 ---
 spring:
   config:
@@ -39,3 +37,12 @@ service:
   message:
     type: "advance"
     text: "welcome"
+---
+spring:
+  config:
+    activate:
+      on-profile: "test"
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017"
+      database: "microservices"
