@@ -62,3 +62,14 @@
 * chapter6에서 cloud 환경을 위해 config-server, discovery-server, gateway를 만들었는데, chapter7, chapter8에서 이 모듈들을 다루지 않고, service instance 하나만으로 예제가 진행되다보니, 결국엔 chapter6의 내용이 무쓸모가 아닌가 싶다.
   * chapter8에서 service instance의 replica를 3개로 늘려서 curl로 접속할 때, round-robin 방식으로 load balancing 되는걸 볼 수 있는데, 그러다보니 문득 gateway가 들어가면 이 replica들은 어떻게 연동되어야하지? 이런 생각도 들고.. 이것저것 궁금증이 많이 남는다.
   * 유종의 미를 거두지 못하는 책 같다.
+
+## chapter9
+* Unit Test
+* JUnit, Mockito, MockBean, Kluent
+* **마찬가지로 예제 프로젝트 새로 안만들고 기존 프로젝트에 테스트 붙임**
+  * MockMvc 대신 WebTestClient 사용
+  * mongodb 접속 url이 host.docker.internal로 되어있어서 접속 못함. 이건 test profile 생성하고, ActiveProfiles annotation 사용해서 test시 적용
+  * CustomerHandlerTest (책에선 CustomerControllerTest)의 경우 MockBean을 사용하여 CustomerService를 생성함. dependency 제거
+  * CustomerServiceTest도 MockBean 사용해서 CustomerRepository를 만들 수 있었으나, ActiveProfiles 테스트 코드 남겨둘려고 안함
+  * Kluent 버전을 최신인 1.65로 올리고 싶었는데, When calling 구문이 사용이 안됨. 일단 1.30으로 책이랑 맞춰서 작업
+  * response body 테스트하는 부분을 infix 써서 fluent한 코드를 작성했는데, 책은 MockMvc용으로 짜져있어서, WebTestClient로 바꿈.
