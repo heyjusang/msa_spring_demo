@@ -73,3 +73,13 @@
   * CustomerServiceTest도 MockBean 사용해서 CustomerRepository를 만들 수 있었으나, ActiveProfiles 테스트 코드 남겨둘려고 안함
   * Kluent 버전을 최신인 1.65로 올리고 싶었는데, When calling 구문이 사용이 안됨. 일단 1.30으로 책이랑 맞춰서 작업
   * response body 테스트하는 부분을 infix 써서 fluent한 코드를 작성했는데, 책은 MockMvc용으로 짜져있어서, WebTestClient로 바꿈.
+  
+## chapter10
+* Monitoring
+* spring actuator, JMX
+* **spring actuator endpoint 중, 책에서 trace를 사용했는데, 동작안함. (404)**
+  * https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints
+  * 위 문서 endpoint 목록에도 trace 없음.
+  * httptrace라고 책에서 trace라고하는것과 동일한 기능의 endpoint가 있는데, 어째서인지 이것도 동작을 안한다. (404)
+* web, JMX,.. 모니터링을 하기위한 기초는 알겠는데, 실제로 어떻게 써먹어야할지를 모르겠다.
+* 모니터링을 한다면, 실시간으로 가능해야할텐데 그런 기능에 대한 설명은 없다. 그리고 장애가 발생했을 때, 이를 복구하기 위한 메커니즘을 제공해야 한다는 점을 강조하는데, 정작 그거에 대한 방법은 없다.
