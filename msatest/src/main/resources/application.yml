@@ -23,6 +23,17 @@ microservice:
   example:
     greetings: "default value"
 logging.level.org.springframework.web: DEBUG
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: health, metric
+  endpoint:
+    health:
+      show-details: always
+  server:
+    port: 8089
 ---
 spring:
   config:
